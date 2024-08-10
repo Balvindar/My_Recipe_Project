@@ -7,18 +7,27 @@
 
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a> </li>
-                <li routerLinkActive="active"><a routerLink="/auth">Authenticate</a> </li>
+                <li routerLinkActive="active"
+                    *ngIf="isAuthenticated"><a routerLink="/recipes">Recipes</a> </li>
+                <li routerLinkActive="active"><a routerLink="/auth"
+                       *ngIf="!isAuthenticated">Authenticate</a> </li>
                 <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping-list</a> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
+                <li *ngIf="isAuthenticated"><a style="cursor: pointer;">Log Out</a></li>
+
                 <li class="drop-down"
-                    appDropdown>
-                    <a class="drop-down-toggle"
+                    appDropdown
+                    *ngIf="isAuthenticated">
+                    <a style="cursor: pointer;"
+                       class="drop-down-toggle"
                        role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a (click)="onSaveData()">Save Data</a></li>
-                        <li><a (click)="onFetchData()">Fetch Data</a></li>
+                        <li><a style="cursor: pointer;"
+                               (click)="onSaveData()">Save Data</a></li>
+                        <li><a style="cursor: pointer;"
+                               (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
