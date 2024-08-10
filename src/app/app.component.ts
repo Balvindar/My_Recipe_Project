@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng4-complete-guide';
-  selectedOption: string = 'recipe';
 }
