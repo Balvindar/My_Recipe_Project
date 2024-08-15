@@ -25,12 +25,7 @@ export class DataStorageService {
     // fetching recipes
     fetchRecipes() {
 
-        return this.authService.user.pipe(take(1), exhaustMap(user => {
-            return this.http.get<Recipe[]>('https://ng-course-recipe-book-95628-default-rtdb.firebaseio.com/recipes.json',
-                {
-                    params: new HttpParams().set('auth', user.token)
-                })
-        }), (map(response => {
+        return this.http.get<Recipe[]>('https://ng-course-recipe-book-95628-default-rtdb.firebaseio.com/recipes.json').pipe(map(response => {
             return response.map(recipe => {
                 const recipeObj = {
                     ...recipe,
@@ -38,8 +33,8 @@ export class DataStorageService {
                 }
                 return recipeObj;
             })
-        })), tap((recipes: any) => {
+        }), tap((recipes: any) => {
             this.recipeService.setRecipes(recipes);
-        }))
+        }));
     }
 }
