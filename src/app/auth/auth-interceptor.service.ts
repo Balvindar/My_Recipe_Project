@@ -3,7 +3,10 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from
 import { exhaustMap, Observable, take } from "rxjs";
 import { AuthService } from "./auth.service";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+}
+)
 
 export class AuthInterceptor implements HttpInterceptor {
 
